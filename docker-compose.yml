@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "backend"
+    image: "backend-aizat:latest"
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - '8000:8000'
+    restart: unless-stopped
