@@ -12,13 +12,13 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 export class OrderListComponent implements OnInit {
   OrderData: any = [];
   dataSource: MatTableDataSource<Order>;
-  @ViewChild(MatSort, {static:true}) sort: MatSort;
-  @ViewChild(MatPaginator, {static:true}) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   displayedColumns: string[] = ['_id', 'service_number', 'segment_group', 'product_name', 'order_status', 'action'];
 
-  constructor(private orderApi: ApiService) {}
+  constructor(private orderApi: ApiService) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.orderApi.GetOrders().subscribe(data => {
       this.OrderData = data;
       this.dataSource = new MatTableDataSource<Order>(this.OrderData);
@@ -29,8 +29,8 @@ export class OrderListComponent implements OnInit {
     })
   }
 
-  deleteOrder(index: number, e){
-    if(window.confirm('Are you sure')) {
+  deleteOrder(index: number, e) {
+    if (window.confirm('Are you sure?')) {
       const data = this.dataSource.data;
       data.splice((this.paginator.pageIndex * this.paginator.pageSize) + index, 1);
       this.dataSource.data = data;
