@@ -1,0 +1,90 @@
+<!-- Title group  -->
+<div class="title-group">
+  <h1 class="mat-h1">Modify Order</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<!-- Form -->
+<div class="inner-wrapper">
+  <form [formGroup]="orderForm" (ngSubmit)="updateForm()" novalidate>
+    <!-- Left block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+
+        <!-- Service Number -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Service Number" formControlName="service_number" appOnlyNumber>
+          <mat-error *ngIf="handleError('service_number', 'required')">
+            You must provide a<strong> service number</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Product Name -->
+        <mat-form-field>
+          <mat-label>Product name</mat-label>
+          <mat-select [(value)]="productName" formControlName="product_name">
+            <mat-option [value]="productArray" *ngFor="let productArray of productNameArray">{{productArray}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="handleError('product_name', 'required')">
+            You must provide a<strong> product name</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Remark -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Remark" formControlName="remark">
+          <mat-error *ngIf="handleError('remark', 'required')">
+            You must provide a<strong> remark</strong>
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+    </mat-card>
+
+    <!-- Right block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+       
+        <!-- Segment Group -->
+        <mat-form-field>
+          <mat-label>Segment group</mat-label>
+          <mat-select [(value)]="segmentGroup" formControlName="segment_group">
+            <mat-option [value]="segmentArray" *ngFor="let segmentArray of segmentGroupArray">{{segmentArray}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="handleError('segment_group', 'required')">
+            You must provide a<strong> segment group</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- State -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="State" formControlName="state">
+          <mat-error *ngIf="handleError('state', 'required')">
+            You must provide a<strong> state</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Order Status -->
+        <div class="misc-bottom-padding">
+          <mat-label>Gender:</mat-label>
+          <mat-radio-group aria-label="Select an option" formControlName="order_status">
+            <mat-radio-button value="Processing">Processing</mat-radio-button>
+            <mat-radio-button value="Complete">Complete</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Submit -->
+    <mat-card>
+      <div class="full-wrapper button-wrapper">
+        <div class="button-wrapper">
+          <button mat-stroked-button color="warn" routerLink="/order-list">Cancel</button>
+          <button mat-flat-button color="primary">Update</button>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>
